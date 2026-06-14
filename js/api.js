@@ -8,6 +8,12 @@
 const API = {
 
   // ── Generic request to Google Apps Script ──
+  // IMPORTANT: Google Apps Script Web Apps do not return proper CORS
+  // headers for POST requests with a JSON Content-Type, which causes
+  // the browser's CORS preflight (OPTIONS) check to fail.
+  // To avoid this entirely, ALL requests (including writes) are sent
+  // as simple GET requests with URL parameters. Simple GET requests
+  // do not trigger a CORS preflight, so this works reliably.
   async request(action, data = {}) {
     if (CONFIG.DEMO_MODE || CONFIG.API_URL.includes('YOUR_SCRIPT_ID_HERE')) {
       return this._demoHandler(action, data);
@@ -15,11 +21,16 @@ const API = {
     try {
       const payload = { action, ...data };
       const url = new URL(CONFIG.API_URL);
-      Object.keys(payload).forEach(k => url.searchParams.append(k, JSON.stringify(payload[k])));
+      Object.keys(payload).forEach(k => {
+        if (payload[k] !== undefined) {
+          url.searchParams.append(k, JSON.stringify(payload[k]));
+        }
+      });
 
       const response = await fetch(url.toString(), {
         method: 'GET',
         mode: 'cors',
+        redirect: 'follow',
       });
 
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -31,24 +42,11 @@ const API = {
     }
   },
 
-  // ── POST request (for larger payloads like answers) ──
+  // ── "post" is kept for semantic clarity in calling code, but is
+  //    implemented identically to request() to avoid CORS issues
+  //    with Google Apps Script. ──
   async post(action, data = {}) {
-    if (CONFIG.DEMO_MODE || CONFIG.API_URL.includes('YOUR_SCRIPT_ID_HERE')) {
-      return this._demoHandler(action, data);
-    }
-    try {
-      const response = await fetch(CONFIG.API_URL, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, ...data }),
-      });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return await response.json();
-    } catch (err) {
-      console.error('API POST Error:', err);
-      throw err;
-    }
+    return this.request(action, data);
   },
 
   // ─────────────────────────────────────────────

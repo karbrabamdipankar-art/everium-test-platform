@@ -9,10 +9,10 @@
 
 const CONFIG = {
   // ── Your Everium Apps Script Web App URL ──
-  API_URL: 'https://script.google.com/macros/s/AKfycbwKUSLLip4iZqgf4i9mtHvguv4gcaCtewtV7Y5jsuzIs5J2HxS0_N7JOHM7itTlANIk-A/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzIn0ZQfs5l53bAxC0nJhkZavmXgNw02js-loD1IJO38GepZSw9N4T-lfG4GoHWiWiv/exec',
 
   // ── Your SkillTrack Pro Apps Script Web App URL ──
-  SKILLTRACK_API_URL: 'https://script.google.com/macros/s/AKfycbwdJsGxnvU-T69v2WHecctvcIk4fdUSZn6IqWLXg6GIbq3RF5HcuEZvuStDK7xorAWMug/exec',
+  SKILLTRACK_API_URL: 'https://script.google.com/macros/s/AKfycby75RZVgbGxjynWfa29kNHu1SlS8qw6JNFtQ_Xkka-x7cmJl9Dw3ZdYHaDUUIot7aSDFQ/exec',
 
   // Platform Settings
   PLATFORM_NAME:    'Everium Test Platform',

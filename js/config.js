@@ -9,7 +9,7 @@
 
 const CONFIG = {
   // ── Your Everium Apps Script Web App URL ──
-  API_URL: 'https://script.google.com/macros/s/AKfycbxgrcZLha7lXhiCLW96wPyLW37ytbDKoHUYnFWZEiZU9DOujmcu60Oo3ZOTQwUon3lO2w/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzPYnNu0i3K1N0yImaLChSW3ghx_42zhuHqenzBQl2sP8Nf_f9kVdVn0QIuRd-atuxx/exec',
 
   // ── Your SkillTrack Pro Apps Script Web App URL ──
   SKILLTRACK_API_URL: 'https://script.google.com/macros/s/AKfycbz9PyBUwsSmCg6p_Jc-cTUpg8o318JTorAf1dt-EtiYltO_f8_qydO9zRIG8fgK2w_C/exec',
